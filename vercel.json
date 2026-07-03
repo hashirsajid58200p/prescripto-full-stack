@@ -1,0 +1,36 @@
+{
+  "services": {
+    "web": {
+      "root": "frontend/",
+      "framework": "vite"
+    },
+    "admin": {
+      "root": "admin/",
+      "framework": "vite"
+    },
+    "api": {
+      "root": "backend/",
+      "entrypoint": "server.js"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "api"
+      }
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": {
+        "service": "admin"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "web"
+      }
+    }
+  ]
+}
