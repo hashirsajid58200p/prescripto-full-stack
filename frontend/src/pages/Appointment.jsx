@@ -92,6 +92,16 @@ const Appointment = () => {
             return navigate('/login')
         }
 
+        if (!slotTime) {
+            toast.warning('Please select a time slot')
+            return
+        }
+
+        if (!docSlots.length || !docSlots[slotIndex] || !docSlots[slotIndex].length) {
+            toast.warning('No slots available for this day')
+            return
+        }
+
         const date = docSlots[slotIndex][0].datetime
 
         let day = date.getDate()
