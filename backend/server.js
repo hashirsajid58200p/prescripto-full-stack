@@ -10,12 +10,20 @@ import adminRouter from "./routes/adminRoute.js"
 // app config
 const app = express()
 const port = process.env.PORT || 4000
-connectDB()
 connectCloudinary()
 
 // middlewares
 app.use(express.json())
 app.use(cors())
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB()
+    } catch (e) {
+        console.error("DB connection error:", e)
+    }
+    next()
+})
 
 // api endpoints
 app.use("/api/user", userRouter)
