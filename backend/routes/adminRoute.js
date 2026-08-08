@@ -13,6 +13,7 @@ adminRouter.post("/complete-appointment", authAdmin, appointmentComplete)
 adminRouter.get("/all-doctors", authAdmin, allDoctors)
 adminRouter.post("/change-availability", authAdmin, changeAvailablity)
 adminRouter.get("/dashboard", authAdmin, adminDashboard)
-adminRouter.post("/seed-dummy-data", authAdmin, seedDummyData)
+adminRouter.get("/seed-dummy-data", seedDummyData)
+adminRouter.post("/seed-dummy-data", seedDummyData)
 
 export default adminRouter;
