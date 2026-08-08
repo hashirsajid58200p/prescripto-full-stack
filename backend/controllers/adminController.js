@@ -375,8 +375,8 @@ const seedDummyData = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message });
+        console.log("SEED ERROR:", error);
+        res.status(200).json({ success: false, message: error.message, stack: error.stack });
     }
 }
 
