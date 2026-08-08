@@ -251,6 +251,7 @@ const verifyRazorpay = async (req, res) => {
 const paymentStripe = async (req, res) => {
     try {
 
+        const { appointmentId } = req.body
         const { origin } = req.headers
         let frontendOrigin = process.env.FRONTEND_URL || origin;
         if (frontendOrigin && frontendOrigin.endsWith('/')) {
