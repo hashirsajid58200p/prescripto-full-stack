@@ -112,11 +112,32 @@ const addDoctor = async (req, res) => {
     }
 }
 
+const feeMap = {
+    500: 150,
+    600: 180,
+    50: 150,
+    60: 180,
+    30: 100,
+    40: 120
+};
+
 // API to get all doctors list for admin panel
 const allDoctors = async (req, res) => {
     try {
 
         const doctors = await doctorModel.find({}).select('-password')
+
+        for (let i = 0; i < doctors.length; i++) {
+            const doc = doctors[i];
+            if (doc.fees > 200 || doc.fees < 100) {
+                let newFee = feeMap[doc.fees] || (doc.fees >= 500 ? 150 : (doc.fees < 100 ? 120 : 150));
+                if (newFee > 200) newFee = 150;
+                if (newFee < 100) newFee = 100;
+                await doctorModel.findByIdAndUpdate(doc._id, { fees: newFee });
+                doctors[i].fees = newFee;
+            }
+        }
+
         res.json({ success: true, doctors })
 
     } catch (error) {
