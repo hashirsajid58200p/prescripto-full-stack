@@ -94,7 +94,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Richard James has a strong commitment to delivering comprehensive primary medical care, focusing on preventive medicine, early diagnosis, and individualized treatment strategies for patients of all ages.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -108,7 +108,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '3 Years',
         about: 'Dr. Emily Larson specializes in women’s reproductive health, prenatal management, and routine wellness screenings with a compassionate and patient-centric approach.',
-        fees: 60,
+        fees: 180,
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -122,7 +122,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '1 Year',
         about: 'Dr. Sarah Patel focuses on diagnosing and managing skin conditions, clinical dermatology, acne therapies, and personalized skincare regimens.',
-        fees: 30,
+        fees: 100,
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -136,7 +136,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '2 Years',
         about: 'Dr. Christopher Lee provides compassionate pediatric care, tracking child development, administering vaccinations, and treating common childhood illnesses.',
-        fees: 40,
+        fees: 120,
         address: {
             line1: '47th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -150,7 +150,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Jennifer Garcia is dedicated to the diagnosis and non-invasive treatment of neurological disorders, nerve conditions, and chronic headache management.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -164,7 +164,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Andrew Williams offers expertise in cognitive health, motor function disorders, and comprehensive neurological evaluations.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -178,7 +178,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Christopher Davis provides patient-centered routine checkups, chronic illness management, and lifestyle counseling for long-term health.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -192,7 +192,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '3 Years',
         about: 'Dr. Timothy White provides specialized care in obstetrics and gynecology, emphasizing preventative care and reproductive wellness.',
-        fees: 60,
+        fees: 180,
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -206,7 +206,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '1 Year',
         about: 'Dr. Ava Mitchell specializes in aesthetic dermatology, skin lesion evaluations, and tailored treatment plans for sensitive skin conditions.',
-        fees: 30,
+        fees: 100,
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -220,7 +220,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '2 Years',
         about: 'Dr. Jeffrey King works closely with families to support healthy infant, child, and adolescent growth with gentle and supportive pediatric medical care.',
-        fees: 40,
+        fees: 120,
         address: {
             line1: '47th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -234,7 +234,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Zoe Kelly specializes in digestive health, treating gastrointestinal conditions, acid reflux management, and dietary health optimization.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -248,7 +248,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Patrick Harris brings years of experience in managing complex neurological syndromes, spinal disorders, and headache conditions.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -262,7 +262,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Chloe Evans provides holistic general medical consultations, acute care treatments, and health screening services.',
-        fees: 50,
+        fees: 150,
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -276,7 +276,7 @@ export const doctors = [
         degree: 'MBBS',
         experience: '3 Years',
         about: 'Dr. Ryan Martinez delivers personalized gynecological evaluations, hormone therapies, and routine female health consultations.',
-        fees: 60,
+        fees: 180,
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
@@ -290,10 +290,10 @@ export const doctors = [
         degree: 'MBBS',
         experience: '1 Year',
         about: 'Dr. Amelia Hill offers expert care for chronic skin disorders, pediatric dermatology, and advanced dermatological treatments.',
-        fees: 30,
+        fees: 100,
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
         }
-    },
+    }
 ]
