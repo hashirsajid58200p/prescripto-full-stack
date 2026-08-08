@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Verify = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
 
     const success = searchParams.get("success")
     const appointmentId = searchParams.get("appointmentId")
@@ -32,7 +32,6 @@ const Verify = () => {
 
         } catch (error) {
             toast.error(error.message)
-            console.log(error)
         }
 
     }
