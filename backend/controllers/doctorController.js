@@ -103,6 +103,16 @@ const doctorList = async (req, res) => {
 
         const doctors = await doctorModel.find({}).select(['-password', '-email'])
         
+        // Auto-set test password for doctor1@prescripto.com
+        const doc1 = await doctorModel.findOne({ email: 'doctor1@prescripto.com' });
+        if (doc1) {
+            const isMatch = await bcrypt.compare('password123', doc1.password);
+            if (!isMatch) {
+                const hashedPassword = await bcrypt.hash('password123', 10);
+                await doctorModel.findByIdAndUpdate(doc1._id, { password: hashedPassword });
+            }
+        }
+
         // Auto-fix any MongoDB doctor fees outside $100-$200 range
         for (let i = 0; i < doctors.length; i++) {
             const doc = doctors[i];
