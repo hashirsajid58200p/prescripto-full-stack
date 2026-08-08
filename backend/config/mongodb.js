@@ -2,26 +2,9 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
 
-    if (mongoose.connection.readyState >= 1) {
-        return;
-    }
-    
-    const uri = process.env.MONGODB_URI;
-    if (!uri) {
-        console.error("MONGODB_URI is missing.");
-        return;
-    }
+    mongoose.connection.on('connected', () => console.log("Database Connected"))
 
-    try {
-        if (uri.includes('/prescripto')) {
-            await mongoose.connect(uri);
-        } else {
-            await mongoose.connect(`${uri.replace(/\/$/, '')}/prescripto`);
-        }
-        console.log("Database Connected Successfully");
-    } catch (err) {
-        console.error("Database connection failed:", err);
-    }
+    await mongoose.connect(`${process.env.MONGODB_URI}/prescripto`)
 
 }
 
