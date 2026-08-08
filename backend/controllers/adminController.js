@@ -193,6 +193,176 @@ const adminDashboard = async (req, res) => {
         console.log(error)
         res.json({ success: false, message: error.message })
     }
+// API to seed 5 new dummy users and diverse appointments
+const seedDummyData = async (req, res) => {
+    try {
+        await userModel.deleteMany({});
+        await appointmentModel.deleteMany({});
+
+        const salt = await bcrypt.genSalt(10);
+        const defaultPassword = await bcrypt.hash("password123", salt);
+
+        const dummyUsers = [
+            {
+                name: "Alex Johnson",
+                email: "alex.johnson@example.com",
+                password: defaultPassword,
+                phone: "+1 (555) 234-5678",
+                address: { line1: "124 Maple Street", line2: "New York, NY" },
+                gender: "Male",
+                dob: "1994-05-15",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+            },
+            {
+                name: "Sophia Martinez",
+                email: "sophia.martinez@example.com",
+                password: defaultPassword,
+                phone: "+1 (555) 876-5432",
+                address: { line1: "456 Oak Avenue", line2: "Los Angeles, CA" },
+                gender: "Female",
+                dob: "1998-08-22",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+            },
+            {
+                name: "David Miller",
+                email: "david.miller@example.com",
+                password: defaultPassword,
+                phone: "+1 (555) 345-6789",
+                address: { line1: "789 Pine Road", line2: "Chicago, IL" },
+                gender: "Male",
+                dob: "1988-11-04",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+            },
+            {
+                name: "Emma Wilson",
+                email: "emma.wilson@example.com",
+                password: defaultPassword,
+                phone: "+1 (555) 987-6543",
+                address: { line1: "321 Cedar Lane", line2: "Houston, TX" },
+                gender: "Female",
+                dob: "2000-02-18",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+            },
+            {
+                name: "James Taylor",
+                email: "james.taylor@example.com",
+                password: defaultPassword,
+                phone: "+1 (555) 456-7890",
+                address: { line1: "654 Elm Boulevard", line2: "Miami, FL" },
+                gender: "Male",
+                dob: "1991-09-30",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150"
+            }
+        ];
+
+        const createdUsers = await userModel.insertMany(dummyUsers);
+        const doctors = await doctorModel.find({});
+
+        if (!doctors.length) {
+            return res.json({ success: false, message: "No doctors found." });
+        }
+
+        const today = new Date();
+        const formatDate = (offsetDays) => {
+            const d = new Date(today);
+            d.setDate(today.getDate() + offsetDays);
+            return `${d.getDate()}_${d.getMonth() + 1}_${d.getFullYear()}`;
+        };
+
+        const dummyAppointments = [
+            {
+                userId: createdUsers[0]._id.toString(),
+                docId: doctors[0]._id.toString(),
+                slotDate: formatDate(2),
+                slotTime: "10:00 AM",
+                userData: createdUsers[0],
+                docData: doctors[0],
+                amount: doctors[0].fees || 150,
+                date: Date.now() - 86400000 * 2,
+                cancelled: false,
+                payment: true,
+                isCompleted: false
+            },
+            {
+                userId: createdUsers[1]._id.toString(),
+                docId: doctors[1]._id.toString(),
+                slotDate: formatDate(3),
+                slotTime: "11:30 AM",
+                userData: createdUsers[1],
+                docData: doctors[1],
+                amount: doctors[1].fees || 180,
+                date: Date.now() - 86400000,
+                cancelled: false,
+                payment: false,
+                isCompleted: false
+            },
+            {
+                userId: createdUsers[2]._id.toString(),
+                docId: doctors[2]._id.toString(),
+                slotDate: formatDate(-1),
+                slotTime: "02:00 PM",
+                userData: createdUsers[2],
+                docData: doctors[2],
+                amount: doctors[2].fees || 100,
+                date: Date.now() - 86400000 * 3,
+                cancelled: false,
+                payment: true,
+                isCompleted: true
+            },
+            {
+                userId: createdUsers[3]._id.toString(),
+                docId: doctors[3]._id.toString(),
+                slotDate: formatDate(1),
+                slotTime: "04:30 PM",
+                userData: createdUsers[3],
+                docData: doctors[3],
+                amount: doctors[3].fees || 120,
+                date: Date.now() - 86400000 * 4,
+                cancelled: true,
+                payment: false,
+                isCompleted: false
+            },
+            {
+                userId: createdUsers[4]._id.toString(),
+                docId: doctors[4]._id.toString(),
+                slotDate: formatDate(4),
+                slotTime: "01:00 PM",
+                userData: createdUsers[4],
+                docData: doctors[4],
+                amount: doctors[4].fees || 150,
+                date: Date.now() - 86400000 * 1,
+                cancelled: false,
+                payment: true,
+                isCompleted: false
+            },
+            {
+                userId: createdUsers[1]._id.toString(),
+                docId: doctors[0]._id.toString(),
+                slotDate: formatDate(-2),
+                slotTime: "09:30 AM",
+                userData: createdUsers[1],
+                docData: doctors[0],
+                amount: doctors[0].fees || 150,
+                date: Date.now() - 86400000 * 5,
+                cancelled: false,
+                payment: true,
+                isCompleted: true
+            }
+        ];
+
+        await appointmentModel.insertMany(dummyAppointments);
+
+        res.json({
+            success: true,
+            message: "Purged old data and seeded 5 new dummy users with diverse appointments!",
+            usersCount: createdUsers.length,
+            appointmentsCount: dummyAppointments.length
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
 }
 
 export {
@@ -202,5 +372,6 @@ export {
     appointmentComplete,
     addDoctor,
     allDoctors,
-    adminDashboard
+    adminDashboard,
+    seedDummyData
 }
