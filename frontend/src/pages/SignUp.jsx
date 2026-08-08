@@ -37,24 +37,24 @@ const SignUp = () => {
   }, [token])
 
   return (
-    <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'>
-      <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg'>
-        <p className='text-2xl font-semibold'>Create Account</p>
-        <p>Please sign up to book appointment</p>
-        <div className='w-full '>
-          <p>Full Name</p>
-          <input onChange={(e) => setName(e.target.value)} value={name} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="text" required />
+    <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center justify-center px-4'>
+      <div className='flex flex-col gap-3 w-full max-w-md items-start p-6 sm:p-8 border rounded-xl text-[#5E5E5E] text-sm shadow-lg bg-white'>
+        <p className='text-2xl font-semibold text-gray-800'>Create Account</p>
+        <p className='text-gray-500 text-xs sm:text-sm'>Please sign up to book appointment</p>
+        <div className='w-full mt-2'>
+          <p className='text-xs sm:text-sm font-medium'>Full Name</p>
+          <input onChange={(e) => setName(e.target.value)} value={name} className='border border-[#DADADA] rounded w-full p-2.5 mt-1 outline-primary text-sm' type="text" required />
         </div>
-        <div className='w-full '>
-          <p>Email</p>
-          <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="email" required />
+        <div className='w-full'>
+          <p className='text-xs sm:text-sm font-medium'>Email</p>
+          <input onChange={(e) => setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2.5 mt-1 outline-primary text-sm' type="email" required />
         </div>
-        <div className='w-full '>
-          <p>Password</p>
-          <input onChange={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="password" required />
+        <div className='w-full'>
+          <p className='text-xs sm:text-sm font-medium'>Password</p>
+          <input onChange={(e) => setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2.5 mt-1 outline-primary text-sm' type="password" required />
         </div>
-        <button className='bg-primary text-white w-full py-2 my-2 rounded-md text-base'>Create account</button>
-        <p>Already have an account? <span onClick={() => navigate('/login')} className='text-primary underline cursor-pointer'>Login here</span></p>
+        <button className='bg-primary text-white w-full py-2.5 my-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-all'>Create account</button>
+        <p className='text-xs sm:text-sm text-gray-600'>Already have an account? <span onClick={() => navigate('/login')} className='text-primary underline cursor-pointer font-medium'>Login here</span></p>
       </div>
     </form>
   )

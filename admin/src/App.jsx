@@ -19,13 +19,14 @@ const App = () => {
 
   const { dToken } = useContext(DoctorContext)
   const { aToken } = useContext(AdminContext)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   return dToken || aToken ? (
-    <div className='bg-[#F8F9FD]'>
+    <div className='bg-[#F8F9FD] min-h-screen'>
       <ToastContainer />
-      <Navbar />
+      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <div className='flex items-start'>
-        <Sidebar />
+        <Sidebar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Routes>
           {/* Admin Routes */}
           {aToken && (
