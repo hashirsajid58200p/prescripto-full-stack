@@ -27,15 +27,28 @@ const App = () => {
       <div className='flex items-start'>
         <Sidebar />
         <Routes>
-          <Route path='/' element={aToken ? <Navigate to='/admin-dashboard' replace /> : (dToken ? <Navigate to='/doctor-dashboard' replace /> : <></>)} />
-          <Route path='/admin-dashboard' element={<Dashboard />} />
-          <Route path='/all-appointments' element={<AllAppointments />} />
-          <Route path='/add-doctor' element={<AddDoctor />} />
-          <Route path='/doctor-list' element={<DoctorsList />} />
-          <Route path='/doctor-dashboard' element={<DoctorDashboard />} />
-          <Route path='/doctor-appointments' element={<DoctorAppointments />} />
-          <Route path='/doctor-profile' element={<DoctorProfile />} />
-          <Route path='*' element={aToken ? <Navigate to='/admin-dashboard' replace /> : (dToken ? <Navigate to='/doctor-dashboard' replace /> : <></>)} />
+          {/* Admin Routes */}
+          {aToken && (
+            <>
+              <Route path='/' element={<Navigate to='/admin-dashboard' replace />} />
+              <Route path='/admin-dashboard' element={<Dashboard />} />
+              <Route path='/all-appointments' element={<AllAppointments />} />
+              <Route path='/add-doctor' element={<AddDoctor />} />
+              <Route path='/doctor-list' element={<DoctorsList />} />
+              <Route path='*' element={<Navigate to='/admin-dashboard' replace />} />
+            </>
+          )}
+
+          {/* Doctor Routes */}
+          {!aToken && dToken && (
+            <>
+              <Route path='/' element={<Navigate to='/doctor-dashboard' replace />} />
+              <Route path='/doctor-dashboard' element={<DoctorDashboard />} />
+              <Route path='/doctor-appointments' element={<DoctorAppointments />} />
+              <Route path='/doctor-profile' element={<DoctorProfile />} />
+              <Route path='*' element={<Navigate to='/doctor-dashboard' replace />} />
+            </>
+          )}
         </Routes>
       </div>
     </div>
