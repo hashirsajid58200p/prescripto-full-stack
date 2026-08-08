@@ -31,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate('/')
+      navigate('/my-appointments')
     }
   }, [token])
 

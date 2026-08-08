@@ -52,10 +52,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            : <div className='hidden md:flex items-center gap-3'>
-                <button onClick={() => navigate('/login')} className='border border-primary text-primary px-6 py-2.5 rounded-full font-light hover:bg-primary hover:text-white transition-all'>Login</button>
-                <button onClick={() => navigate('/signup')} className='bg-primary text-white px-6 py-2.5 rounded-full font-light hover:bg-opacity-90 transition-all'>Create account</button>
-              </div>
+            : <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Sign Up / Login</button>
         }
         <img onClick={() => setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
 
