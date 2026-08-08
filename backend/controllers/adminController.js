@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import { v2 as cloudinary } from "cloudinary";
 import userModel from "../models/userModel.js";
+import connectDB from "../config/mongodb.js";
 
 // API for admin login
 const loginAdmin = async (req, res) => {
@@ -76,6 +77,7 @@ const appointmentComplete = async (req, res) => {
 // API to seed 5 new dummy users and diverse appointments
 const seedDummyData = async (req, res) => {
     try {
+        await connectDB();
         await userModel.deleteMany({});
         await appointmentModel.deleteMany({});
 
