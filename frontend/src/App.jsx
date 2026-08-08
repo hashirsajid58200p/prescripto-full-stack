@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import Home from './pages/Home'
 import Doctors from './pages/Doctors'
 import Login from './pages/Login'
@@ -16,26 +16,36 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 import NotFound from './pages/NotFound'
 
-const App = () => {
+const Layout = () => {
   return (
     <div className='mx-4 sm:mx-[10%]'>
-      <ToastContainer />
       <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  )
+}
+
+const App = () => {
+  return (
+    <div>
+      <ToastContainer />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/doctors' element={<Doctors />} />
-        <Route path='/doctors/:speciality' element={<Doctors />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/appointment/:docId' element={<Appointment />} />
-        <Route path='/my-appointments' element={<MyAppointments />} />
-        <Route path='/my-profile' element={<MyProfile />} />
-        <Route path='/verify' element={<Verify />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/doctors' element={<Doctors />} />
+          <Route path='/doctors/:speciality' element={<Doctors />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/appointment/:docId' element={<Appointment />} />
+          <Route path='/my-appointments' element={<MyAppointments />} />
+          <Route path='/my-profile' element={<MyProfile />} />
+          <Route path='/verify' element={<Verify />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
-      <Footer />
     </div>
   )
 }
