@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import { v2 as cloudinary } from "cloudinary";
 import userModel from "../models/userModel.js";
-import connectDB from "../config/mongodb.js";
 
 // API for admin login
 const loginAdmin = async (req, res) => {
