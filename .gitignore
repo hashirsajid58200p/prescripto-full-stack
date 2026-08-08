@@ -33,6 +33,7 @@ build/
 out/
 **/out/
 .vercel
+credentials.txt
 
 # Editor/System directories
 .vscode/
