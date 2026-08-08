@@ -5,7 +5,7 @@ import { AppContext } from '../../context/AppContext'
 
 const Dashboard = () => {
 
-  const { aToken, getDashData, cancelAppointment, dashData } = useContext(AdminContext)
+  const { aToken, getDashData, cancelAppointment, completeAppointment, dashData } = useContext(AdminContext)
   const { slotDateFormat } = useContext(AppContext)
 
   useEffect(() => {
@@ -58,19 +58,22 @@ const Dashboard = () => {
                 {item.cancelled ? (
                   <span className='px-2.5 py-0.5 text-xs rounded-full bg-red-100 text-red-600 font-medium'>Cancelled</span>
                 ) : item.isCompleted ? (
-                  <span className='px-2.5 py-0.5 text-xs rounded-full bg-blue-100 text-blue-600 font-medium'>Completed</span>
+                  <span className='px-2.5 py-0.5 text-xs rounded-full bg-green-100 text-green-600 font-medium'>Completed</span>
                 ) : item.payment ? (
-                  <span className='px-2.5 py-0.5 text-xs rounded-full bg-green-100 text-green-700 font-medium'>Paid</span>
+                  <span className='px-2.5 py-0.5 text-xs rounded-full bg-blue-100 text-blue-600 font-medium'>Paid</span>
                 ) : (
                   <span className='px-2.5 py-0.5 text-xs rounded-full bg-yellow-100 text-yellow-800 font-medium'>Unpaid</span>
                 )}
               </div>
-              {item.cancelled ? (
-                <p className='text-red-400 text-xs font-medium'>Cancelled</p>
-              ) : item.isCompleted ? (
-                <p className='text-green-500 text-xs font-medium'>Completed</p>
+              {item.cancelled || item.isCompleted ? (
+                <p className='text-gray-400 text-xs font-medium text-center'>-</p>
+              ) : item.payment ? (
+                <div className='flex items-center gap-1'>
+                  <img onClick={() => cancelAppointment(item._id)} className='w-8 cursor-pointer hover:scale-110 transition-all' src={assets.cancel_icon} alt="Cancel" title="Cancel Appointment" />
+                  <img onClick={() => completeAppointment(item._id)} className='w-8 cursor-pointer hover:scale-110 transition-all' src={assets.tick_icon} alt="Confirm" title="Confirm/Complete Appointment" />
+                </div>
               ) : (
-                <img onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer hover:opacity-80 transition-all' src={assets.cancel_icon} alt="Cancel" title="Cancel Appointment" />
+                <img onClick={() => cancelAppointment(item._id)} className='w-8 cursor-pointer hover:scale-110 transition-all' src={assets.cancel_icon} alt="Cancel" title="Cancel Appointment" />
               )}
             </div>
           ))}

@@ -81,6 +81,29 @@ const AdminContextProvider = (props) => {
             if (data.success) {
                 toast.success(data.message)
                 getAllAppointments()
+                getDashData()
+            } else {
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+            console.log(error)
+        }
+
+    }
+
+    // Function to mark appointment completed using API
+    const completeAppointment = async (appointmentId) => {
+
+        try {
+
+            const { data } = await axios.post(backendUrl + '/api/admin/complete-appointment', { appointmentId }, { headers: { aToken } })
+
+            if (data.success) {
+                toast.success(data.message)
+                getAllAppointments()
+                getDashData()
             } else {
                 toast.error(data.message)
             }
@@ -120,6 +143,7 @@ const AdminContextProvider = (props) => {
         getAllAppointments,
         getDashData,
         cancelAppointment,
+        completeAppointment,
         dashData
     }
 

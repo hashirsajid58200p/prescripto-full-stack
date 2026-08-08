@@ -67,6 +67,22 @@ const appointmentCancel = async (req, res) => {
 
 }
 
+// API for appointment completion
+const appointmentComplete = async (req, res) => {
+    try {
+
+        const { appointmentId } = req.body
+        await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true })
+
+        res.json({ success: true, message: 'Appointment Completed' })
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+
+}
+
 // API for adding Doctor
 const addDoctor = async (req, res) => {
 
@@ -183,6 +199,7 @@ export {
     loginAdmin,
     appointmentsAdmin,
     appointmentCancel,
+    appointmentComplete,
     addDoctor,
     allDoctors,
     adminDashboard
