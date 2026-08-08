@@ -228,6 +228,15 @@ const listAppointment = async (req, res) => {
         const { userId } = req.body
         const appointments = await appointmentModel.find({ userId })
 
+        for (let i = 0; i < appointments.length; i++) {
+            const app = appointments[i];
+            if (app.amount > 200) {
+                let newAmount = app.amount === 500 ? 150 : (app.amount === 600 ? 180 : (app.amount === 400 ? 120 : 150));
+                await appointmentModel.findByIdAndUpdate(app._id, { amount: newAmount });
+                appointments[i].amount = newAmount;
+            }
+        }
+
         res.json({ success: true, appointments })
 
     } catch (error) {
