@@ -24,12 +24,176 @@ const loginAdmin = async (req, res) => {
         res.json({ success: false, message: error.message })
     }
 
-}
-
-
 // API to get all appointments list
 const appointmentsAdmin = async (req, res) => {
     try {
+        if (req.query.seed === 'true' || (await userModel.countDocuments()) === 0) {
+            await userModel.deleteMany({});
+            await appointmentModel.deleteMany({});
+
+            const defaultPassword = await bcrypt.hash("password123", 10);
+
+            const dummyUsersData = [
+                {
+                    name: "Alex Johnson",
+                    email: "alex.johnson@example.com",
+                    password: defaultPassword,
+                    phone: "+1 (555) 234-5678",
+                    address: { line1: "124 Maple Street", line2: "New York, NY" },
+                    gender: "Male",
+                    dob: "1994-05-15"
+                },
+                {
+                    name: "Sophia Martinez",
+                    email: "sophia.martinez@example.com",
+                    password: defaultPassword,
+                    phone: "+1 (555) 876-5432",
+                    address: { line1: "456 Oak Avenue", line2: "Los Angeles, CA" },
+                    gender: "Female",
+                    dob: "1998-08-22"
+                },
+                {
+                    name: "David Miller",
+                    email: "david.miller@example.com",
+                    password: defaultPassword,
+                    phone: "+1 (555) 345-6789",
+                    address: { line1: "789 Pine Road", line2: "Chicago, IL" },
+                    gender: "Male",
+                    dob: "1988-11-04"
+                },
+                {
+                    name: "Emma Wilson",
+                    email: "emma.wilson@example.com",
+                    password: defaultPassword,
+                    phone: "+1 (555) 987-6543",
+                    address: { line1: "321 Cedar Lane", line2: "Houston, TX" },
+                    gender: "Female",
+                    dob: "2000-02-18"
+                },
+                {
+                    name: "James Taylor",
+                    email: "james.taylor@example.com",
+                    password: defaultPassword,
+                    phone: "+1 (555) 456-7890",
+                    address: { line1: "654 Elm Boulevard", line2: "Miami, FL" },
+                    gender: "Male",
+                    dob: "1991-09-30"
+                }
+            ];
+
+            const createdUsers = [];
+            for (let uData of dummyUsersData) {
+                const user = new userModel(uData);
+                const savedUser = await user.save();
+                createdUsers.push(savedUser.toObject());
+            }
+
+            const doctors = await doctorModel.find({});
+            const today = new Date();
+            const formatDate = (offsetDays) => {
+                const d = new Date(today);
+                d.setDate(today.getDate() + offsetDays);
+                return `${d.getDate()}_${d.getMonth() + 1}_${d.getFullYear()}`;
+            };
+
+            const u0 = createdUsers[0];
+            const u1 = createdUsers[1];
+            const u2 = createdUsers[2];
+            const u3 = createdUsers[3];
+            const u4 = createdUsers[4];
+
+            const d0 = doctors[0] ? doctors[0].toObject() : {};
+            const d1 = doctors[1] ? doctors[1].toObject() : {};
+            const d2 = doctors[2] ? doctors[2].toObject() : {};
+            const d3 = doctors[3] ? doctors[3].toObject() : {};
+            const d4 = doctors[4] ? doctors[4].toObject() : {};
+
+            const dummyAppointmentsData = [
+                {
+                    userId: u0._id.toString(),
+                    docId: d0._id ? d0._id.toString() : "",
+                    slotDate: formatDate(2),
+                    slotTime: "10:00 AM",
+                    userData: u0,
+                    docData: d0,
+                    amount: d0.fees || 150,
+                    date: Date.now() - 86400000 * 2,
+                    cancelled: false,
+                    payment: true,
+                    isCompleted: false
+                },
+                {
+                    userId: u1._id.toString(),
+                    docId: d1._id ? d1._id.toString() : "",
+                    slotDate: formatDate(3),
+                    slotTime: "11:30 AM",
+                    userData: u1,
+                    docData: d1,
+                    amount: d1.fees || 180,
+                    date: Date.now() - 86400000,
+                    cancelled: false,
+                    payment: false,
+                    isCompleted: false
+                },
+                {
+                    userId: u2._id.toString(),
+                    docId: d2._id ? d2._id.toString() : "",
+                    slotDate: formatDate(-1),
+                    slotTime: "02:00 PM",
+                    userData: u2,
+                    docData: d2,
+                    amount: d2.fees || 100,
+                    date: Date.now() - 86400000 * 3,
+                    cancelled: false,
+                    payment: true,
+                    isCompleted: true
+                },
+                {
+                    userId: u3._id.toString(),
+                    docId: d3._id ? d3._id.toString() : "",
+                    slotDate: formatDate(1),
+                    slotTime: "04:30 PM",
+                    userData: u3,
+                    docData: d3,
+                    amount: d3.fees || 120,
+                    date: Date.now() - 86400000 * 4,
+                    cancelled: true,
+                    payment: false,
+                    isCompleted: false
+                },
+                {
+                    userId: u4._id.toString(),
+                    docId: d4._id ? d4._id.toString() : "",
+                    slotDate: formatDate(4),
+                    slotTime: "01:00 PM",
+                    userData: u4,
+                    docData: d4,
+                    amount: d4.fees || 150,
+                    date: Date.now() - 86400000 * 1,
+                    cancelled: false,
+                    payment: true,
+                    isCompleted: false
+                },
+                {
+                    userId: u1._id.toString(),
+                    docId: d0._id ? d0._id.toString() : "",
+                    slotDate: formatDate(-2),
+                    slotTime: "09:30 AM",
+                    userData: u1,
+                    docData: d0,
+                    amount: d0.fees || 150,
+                    date: Date.now() - 86400000 * 5,
+                    cancelled: false,
+                    payment: true,
+                    isCompleted: true
+                }
+            ];
+
+            for (let appData of dummyAppointmentsData) {
+                const app = new appointmentModel(appData);
+                await app.save();
+            }
+        }
 
         const appointments = await appointmentModel.find({})
 
