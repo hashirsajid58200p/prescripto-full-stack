@@ -1,47 +1,20 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
+      "source": "/api/:path*",
+      "destination": "/backend/server.js"
     },
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/vite"
+      "source": "/admin/:path*",
+      "destination": "/admin/index.html"
     },
     {
-      "src": "admin/package.json",
-      "use": "@vercel/vite"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/server.js"
+      "source": "/admin",
+      "destination": "/admin/index.html"
     },
     {
-      "src": "/admin/(.*)",
-      "dest": "admin/index.html"
-    },
-    {
-      "src": "/admin",
-      "dest": "admin/index.html"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "frontend/assets/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "frontend/favicon.ico"
-    },
-    {
-      "src": "/favicon.svg",
-      "dest": "frontend/favicon.svg"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/index.html"
+      "source": "/((?!api|admin|assets|favicon).*)",
+      "destination": "/index.html"
     }
   ]
 }
