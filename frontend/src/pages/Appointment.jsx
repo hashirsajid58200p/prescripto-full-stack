@@ -35,24 +35,23 @@ const Appointment = () => {
 
     const getAvailableSolts = async () => {
 
-        setDocSlots([])
-
-        // getting current date
         let today = new Date()
+        let allSlots = []
+        let dayOffset = 0
 
-        for (let i = 0; i < 7; i++) {
+        while (allSlots.length < 7 && dayOffset < 30) {
 
             // getting date with index 
             let currentDate = new Date(today)
-            currentDate.setDate(today.getDate() + i)
+            currentDate.setDate(today.getDate() + dayOffset)
 
             // setting end time of the date with index
-            let endTime = new Date()
-            endTime.setDate(today.getDate() + i)
+            let endTime = new Date(today)
+            endTime.setDate(today.getDate() + dayOffset)
             endTime.setHours(21, 0, 0, 0)
 
             // setting hours 
-            if (today.getDate() === currentDate.getDate()) {
+            if (dayOffset === 0) {
                 currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10)
                 currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
             } else {
@@ -61,7 +60,6 @@ const Appointment = () => {
             }
 
             let timeSlots = [];
-
 
             while (currentDate < endTime) {
                 let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -73,10 +71,9 @@ const Appointment = () => {
                 const slotDate = day + "_" + month + "_" + year
                 const slotTime = formattedTime
 
-                const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
+                const isSlotAvailable = docInfo.slots_booked && docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
 
                 if (isSlotAvailable) {
-
                     // Add slot to array
                     timeSlots.push({
                         datetime: new Date(currentDate),
@@ -88,9 +85,15 @@ const Appointment = () => {
                 currentDate.setMinutes(currentDate.getMinutes() + 30);
             }
 
-            setDocSlots(prev => ([...prev, timeSlots]))
+            if (timeSlots.length > 0) {
+                allSlots.push(timeSlots)
+            }
 
+            dayOffset++
         }
+
+        setDocSlots(allSlots)
+        setSlotIndex(0)
 
     }
 
