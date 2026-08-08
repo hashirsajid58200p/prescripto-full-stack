@@ -26,6 +26,14 @@
       "dest": "backend/server.js"
     },
     {
+      "src": "/admin/favicon.ico",
+      "dest": "admin/favicon.ico"
+    },
+    {
+      "src": "/admin/favicon.svg",
+      "dest": "admin/favicon.svg"
+    },
+    {
       "src": "/admin/assets/(.*)",
       "dest": "admin/assets/$1"
     },
