@@ -269,80 +269,92 @@ const seedDummyData = async (req, res) => {
             return `${d.getDate()}_${d.getMonth() + 1}_${d.getFullYear()}`;
         };
 
+        const u0 = createdUsers[0].toObject();
+        const u1 = createdUsers[1].toObject();
+        const u2 = createdUsers[2].toObject();
+        const u3 = createdUsers[3].toObject();
+        const u4 = createdUsers[4].toObject();
+
+        const d0 = doctors[0].toObject();
+        const d1 = doctors[1].toObject();
+        const d2 = doctors[2].toObject();
+        const d3 = doctors[3].toObject();
+        const d4 = doctors[4].toObject();
+
         const dummyAppointments = [
             {
-                userId: createdUsers[0]._id.toString(),
-                docId: doctors[0]._id.toString(),
+                userId: u0._id.toString(),
+                docId: d0._id.toString(),
                 slotDate: formatDate(2),
                 slotTime: "10:00 AM",
-                userData: createdUsers[0],
-                docData: doctors[0],
-                amount: doctors[0].fees || 150,
+                userData: u0,
+                docData: d0,
+                amount: d0.fees || 150,
                 date: Date.now() - 86400000 * 2,
                 cancelled: false,
                 payment: true,
                 isCompleted: false
             },
             {
-                userId: createdUsers[1]._id.toString(),
-                docId: doctors[1]._id.toString(),
+                userId: u1._id.toString(),
+                docId: d1._id.toString(),
                 slotDate: formatDate(3),
                 slotTime: "11:30 AM",
-                userData: createdUsers[1],
-                docData: doctors[1],
-                amount: doctors[1].fees || 180,
+                userData: u1,
+                docData: d1,
+                amount: d1.fees || 180,
                 date: Date.now() - 86400000,
                 cancelled: false,
                 payment: false,
                 isCompleted: false
             },
             {
-                userId: createdUsers[2]._id.toString(),
-                docId: doctors[2]._id.toString(),
+                userId: u2._id.toString(),
+                docId: d2._id.toString(),
                 slotDate: formatDate(-1),
                 slotTime: "02:00 PM",
-                userData: createdUsers[2],
-                docData: doctors[2],
-                amount: doctors[2].fees || 100,
+                userData: u2,
+                docData: d2,
+                amount: d2.fees || 100,
                 date: Date.now() - 86400000 * 3,
                 cancelled: false,
                 payment: true,
                 isCompleted: true
             },
             {
-                userId: createdUsers[3]._id.toString(),
-                docId: doctors[3]._id.toString(),
+                userId: u3._id.toString(),
+                docId: d3._id.toString(),
                 slotDate: formatDate(1),
                 slotTime: "04:30 PM",
-                userData: createdUsers[3],
-                docData: doctors[3],
-                amount: doctors[3].fees || 120,
+                userData: u3,
+                docData: d3,
+                amount: d3.fees || 120,
                 date: Date.now() - 86400000 * 4,
                 cancelled: true,
                 payment: false,
                 isCompleted: false
             },
             {
-                userId: createdUsers[4]._id.toString(),
-                docId: doctors[4]._id.toString(),
+                userId: u4._id.toString(),
+                docId: d4._id.toString(),
                 slotDate: formatDate(4),
                 slotTime: "01:00 PM",
-                userData: createdUsers[4],
-                docData: doctors[4],
-                amount: doctors[4].fees || 150,
+                userData: u4,
+                docData: d4,
+                amount: d4.fees || 150,
                 date: Date.now() - 86400000 * 1,
                 cancelled: false,
                 payment: true,
                 isCompleted: false
             },
             {
-                userId: createdUsers[1]._id.toString(),
-                docId: doctors[0]._id.toString(),
+                userId: u1._id.toString(),
+                docId: d0._id.toString(),
                 slotDate: formatDate(-2),
                 slotTime: "09:30 AM",
-                userData: createdUsers[1],
-                docData: doctors[0],
-                amount: doctors[0].fees || 150,
+                userData: u1,
+                docData: d0,
+                amount: d0.fees || 150,
                 date: Date.now() - 86400000 * 5,
                 cancelled: false,
                 payment: true,
