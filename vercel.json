@@ -1,20 +1,39 @@
 {
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
+    },
+    "admin": {
+      "root": "admin",
+      "framework": "vite"
+    },
+    "backend": {
+      "root": "backend",
+      "entrypoint": "server.js"
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/backend/server.js"
+      "source": "/api(/.*)?",
+      "destination": {
+        "type": "service",
+        "service": "backend"
+      }
     },
     {
-      "source": "/admin/:path*",
-      "destination": "/admin/index.html"
+      "source": "/admin(/.*)?",
+      "destination": {
+        "type": "service",
+        "service": "admin"
+      }
     },
     {
-      "source": "/admin",
-      "destination": "/admin/index.html"
-    },
-    {
-      "source": "/((?!api|admin|assets|favicon).*)",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "frontend"
+      }
     }
   ]
 }
