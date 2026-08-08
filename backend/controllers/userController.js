@@ -112,7 +112,7 @@ const updateProfile = async (req, res) => {
         if (imageFile) {
 
             // upload image to cloudinary
-            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
+            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image", folder: "prescripto/users" })
             const imageURL = imageUpload.secure_url
 
             await userModel.findByIdAndUpdate(userId, { image: imageURL })
@@ -251,8 +251,11 @@ const verifyRazorpay = async (req, res) => {
 const paymentStripe = async (req, res) => {
     try {
 
-        const { appointmentId } = req.body
         const { origin } = req.headers
+        let frontendOrigin = process.env.FRONTEND_URL || origin;
+        if (frontendOrigin && frontendOrigin.endsWith('/')) {
+            frontendOrigin = frontendOrigin.slice(0, -1);
+        }
 
         const appointmentData = await appointmentModel.findById(appointmentId)
 
@@ -260,7 +263,7 @@ const paymentStripe = async (req, res) => {
             return res.json({ success: false, message: 'Appointment Cancelled or not found' })
         }
 
-        const currency = process.env.CURRENCY.toLocaleLowerCase()
+        const currency = (process.env.CURRENCY || 'usd').toLocaleLowerCase()
 
         const line_items = [{
             price_data: {
@@ -274,8 +277,8 @@ const paymentStripe = async (req, res) => {
         }]
 
         const session = await stripeInstance.checkout.sessions.create({
-            success_url: `${origin}/verify?success=true&appointmentId=${appointmentData._id}`,
-            cancel_url: `${origin}/verify?success=false&appointmentId=${appointmentData._id}`,
+            success_url: `${frontendOrigin}/verify?success=true&appointmentId=${appointmentData._id}`,
+            cancel_url: `${frontendOrigin}/verify?success=false&appointmentId=${appointmentData._id}`,
             line_items: line_items,
             mode: 'payment',
         })

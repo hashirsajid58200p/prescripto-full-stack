@@ -85,7 +85,7 @@ const addDoctor = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         // upload image to cloudinary
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image", folder: "prescripto/doctors" })
         const imageUrl = imageUpload.secure_url
 
         const doctorData = {

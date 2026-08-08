@@ -93,7 +93,7 @@ export const doctors = [
         speciality: 'General physician',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Richard James has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Richard James has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Richard James has a strong commitment to delivering comprehensive primary medical care, focusing on preventive medicine, early diagnosis, and individualized treatment strategies for patients of all ages.',
         fees: 50,
         address: {
             line1: '17th Cross, Richmond',
@@ -107,7 +107,7 @@ export const doctors = [
         speciality: 'Gynecologist',
         degree: 'MBBS',
         experience: '3 Years',
-        about: 'Dr. Emily Larson has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Emily Larson has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Emily Larson specializes in women’s reproductive health, prenatal management, and routine wellness screenings with a compassionate and patient-centric approach.',
         fees: 60,
         address: {
             line1: '27th Cross, Richmond',
@@ -121,7 +121,7 @@ export const doctors = [
         speciality: 'Dermatologist',
         degree: 'MBBS',
         experience: '1 Year',
-        about: 'Dr. Sarah Patel has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Sarah Patel has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Sarah Patel focuses on diagnosing and managing skin conditions, clinical dermatology, acne therapies, and personalized skincare regimens.',
         fees: 30,
         address: {
             line1: '37th Cross, Richmond',
@@ -135,7 +135,7 @@ export const doctors = [
         speciality: 'Pediatricians',
         degree: 'MBBS',
         experience: '2 Years',
-        about: 'Dr. Christopher Lee has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Christopher Lee has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Christopher Lee provides compassionate pediatric care, tracking child development, administering vaccinations, and treating common childhood illnesses.',
         fees: 40,
         address: {
             line1: '47th Cross, Richmond',
@@ -149,7 +149,7 @@ export const doctors = [
         speciality: 'Neurologist',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Jennifer Garcia has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Jennifer Garcia has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Jennifer Garcia is dedicated to the diagnosis and non-invasive treatment of neurological disorders, nerve conditions, and chronic headache management.',
         fees: 50,
         address: {
             line1: '57th Cross, Richmond',
@@ -163,7 +163,7 @@ export const doctors = [
         speciality: 'Neurologist',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Andrew Williams has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Andrew Williams has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Andrew Williams offers expertise in cognitive health, motor function disorders, and comprehensive neurological evaluations.',
         fees: 50,
         address: {
             line1: '57th Cross, Richmond',
@@ -177,7 +177,7 @@ export const doctors = [
         speciality: 'General physician',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Christopher Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Christopher Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Christopher Davis provides patient-centered routine checkups, chronic illness management, and lifestyle counseling for long-term health.',
         fees: 50,
         address: {
             line1: '17th Cross, Richmond',
@@ -191,7 +191,7 @@ export const doctors = [
         speciality: 'Gynecologist',
         degree: 'MBBS',
         experience: '3 Years',
-        about: 'Dr. Timothy White has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Timothy White has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Timothy White provides specialized care in obstetrics and gynecology, emphasizing preventative care and reproductive wellness.',
         fees: 60,
         address: {
             line1: '27th Cross, Richmond',
@@ -205,7 +205,7 @@ export const doctors = [
         speciality: 'Dermatologist',
         degree: 'MBBS',
         experience: '1 Year',
-        about: 'Dr. Ava Mitchell has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Ava Mitchell has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Ava Mitchell specializes in aesthetic dermatology, skin lesion evaluations, and tailored treatment plans for sensitive skin conditions.',
         fees: 30,
         address: {
             line1: '37th Cross, Richmond',
@@ -219,7 +219,7 @@ export const doctors = [
         speciality: 'Pediatricians',
         degree: 'MBBS',
         experience: '2 Years',
-        about: 'Dr. Jeffrey King has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Jeffrey King has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Jeffrey King works closely with families to support healthy infant, child, and adolescent growth with gentle and supportive pediatric medical care.',
         fees: 40,
         address: {
             line1: '47th Cross, Richmond',
@@ -233,7 +233,7 @@ export const doctors = [
         speciality: 'Gastroenterologist',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Zoe Kelly has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Zoe Kelly has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Zoe Kelly specializes in digestive health, treating gastrointestinal conditions, acid reflux management, and dietary health optimization.',
         fees: 50,
         address: {
             line1: '57th Cross, Richmond',
@@ -247,7 +247,7 @@ export const doctors = [
         speciality: 'Neurologist',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Patrick Harris has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Patrick Harris has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Patrick Harris brings years of experience in managing complex neurological syndromes, spinal disorders, and headache conditions.',
         fees: 50,
         address: {
             line1: '57th Cross, Richmond',
@@ -261,7 +261,7 @@ export const doctors = [
         speciality: 'General physician',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Chloe Evans has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Chloe Evans has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Chloe Evans provides holistic general medical consultations, acute care treatments, and health screening services.',
         fees: 50,
         address: {
             line1: '17th Cross, Richmond',
@@ -275,7 +275,7 @@ export const doctors = [
         speciality: 'Gynecologist',
         degree: 'MBBS',
         experience: '3 Years',
-        about: 'Dr. Ryan Martinez has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Ryan Martinez has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Ryan Martinez delivers personalized gynecological evaluations, hormone therapies, and routine female health consultations.',
         fees: 60,
         address: {
             line1: '27th Cross, Richmond',
@@ -289,7 +289,7 @@ export const doctors = [
         speciality: 'Dermatologist',
         degree: 'MBBS',
         experience: '1 Year',
-        about: 'Dr. Amelia Hill has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Amelia Hill has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Amelia Hill offers expert care for chronic skin disorders, pediatric dermatology, and advanced dermatological treatments.',
         fees: 30,
         address: {
             line1: '37th Cross, Richmond',
