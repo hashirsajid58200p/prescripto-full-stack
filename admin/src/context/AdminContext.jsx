@@ -7,7 +7,12 @@ export const AdminContext = createContext()
 
 const AdminContextProvider = (props) => {
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || ""
+    const rawUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = rawUrl && rawUrl !== 'http://localhost:4000' && rawUrl !== 'http://localhost:4000/'
+        ? rawUrl
+        : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:4000'
+            : '')
 
     const [aToken, setAToken] = useState(localStorage.getItem('aToken') ? localStorage.getItem('aToken') : '')
 
