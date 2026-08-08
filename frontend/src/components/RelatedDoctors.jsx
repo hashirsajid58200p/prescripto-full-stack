@@ -33,7 +33,7 @@ const RelatedDoctors = ({ speciality, docId }) => {
                     </div>
                 ))}
             </div>
-            {/* <button className='bg-[#EAEFFF] text-gray-600 px-12 py-3 rounded-full mt-10'>more</button> */}
+            {/* <button className='bg-[#EAEFFF] text-gray-600 px-12 py-3 rounded-full mt-10'>More</button> */}
         </div>
     )
 }
