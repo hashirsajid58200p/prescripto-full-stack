@@ -202,7 +202,7 @@ const seedDummyData = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const defaultPassword = await bcrypt.hash("password123", salt);
 
-        const dummyUsers = [
+        const dummyUsersData = [
             {
                 name: "Alex Johnson",
                 email: "alex.johnson@example.com",
@@ -210,8 +210,7 @@ const seedDummyData = async (req, res) => {
                 phone: "+1 (555) 234-5678",
                 address: { line1: "124 Maple Street", line2: "New York, NY" },
                 gender: "Male",
-                dob: "1994-05-15",
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+                dob: "1994-05-15"
             },
             {
                 name: "Sophia Martinez",
@@ -220,8 +219,7 @@ const seedDummyData = async (req, res) => {
                 phone: "+1 (555) 876-5432",
                 address: { line1: "456 Oak Avenue", line2: "Los Angeles, CA" },
                 gender: "Female",
-                dob: "1998-08-22",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+                dob: "1998-08-22"
             },
             {
                 name: "David Miller",
@@ -230,8 +228,7 @@ const seedDummyData = async (req, res) => {
                 phone: "+1 (555) 345-6789",
                 address: { line1: "789 Pine Road", line2: "Chicago, IL" },
                 gender: "Male",
-                dob: "1988-11-04",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+                dob: "1988-11-04"
             },
             {
                 name: "Emma Wilson",
@@ -240,8 +237,7 @@ const seedDummyData = async (req, res) => {
                 phone: "+1 (555) 987-6543",
                 address: { line1: "321 Cedar Lane", line2: "Houston, TX" },
                 gender: "Female",
-                dob: "2000-02-18",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+                dob: "2000-02-18"
             },
             {
                 name: "James Taylor",
@@ -250,14 +246,18 @@ const seedDummyData = async (req, res) => {
                 phone: "+1 (555) 456-7890",
                 address: { line1: "654 Elm Boulevard", line2: "Miami, FL" },
                 gender: "Male",
-                dob: "1991-09-30",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150"
+                dob: "1991-09-30"
             }
         ];
 
-        const createdUsers = await userModel.insertMany(dummyUsers);
-        const doctors = await doctorModel.find({});
+        const createdUsers = [];
+        for (let uData of dummyUsersData) {
+            const user = new userModel(uData);
+            const savedUser = await user.save();
+            createdUsers.push(savedUser.toObject());
+        }
 
+        const doctors = await doctorModel.find({});
         if (!doctors.length) {
             return res.json({ success: false, message: "No doctors found." });
         }
@@ -269,11 +269,11 @@ const seedDummyData = async (req, res) => {
             return `${d.getDate()}_${d.getMonth() + 1}_${d.getFullYear()}`;
         };
 
-        const u0 = createdUsers[0].toObject();
-        const u1 = createdUsers[1].toObject();
-        const u2 = createdUsers[2].toObject();
-        const u3 = createdUsers[3].toObject();
-        const u4 = createdUsers[4].toObject();
+        const u0 = createdUsers[0];
+        const u1 = createdUsers[1];
+        const u2 = createdUsers[2];
+        const u3 = createdUsers[3];
+        const u4 = createdUsers[4];
 
         const d0 = doctors[0].toObject();
         const d1 = doctors[1].toObject();
@@ -281,7 +281,7 @@ const seedDummyData = async (req, res) => {
         const d3 = doctors[3].toObject();
         const d4 = doctors[4].toObject();
 
-        const dummyAppointments = [
+        const dummyAppointmentsData = [
             {
                 userId: u0._id.toString(),
                 docId: d0._id.toString(),
@@ -362,13 +362,16 @@ const seedDummyData = async (req, res) => {
             }
         ];
 
-        await appointmentModel.insertMany(dummyAppointments);
+        for (let appData of dummyAppointmentsData) {
+            const app = new appointmentModel(appData);
+            await app.save();
+        }
 
         res.json({
             success: true,
             message: "Purged old data and seeded 5 new dummy users with diverse appointments!",
             usersCount: createdUsers.length,
-            appointmentsCount: dummyAppointments.length
+            appointmentsCount: dummyAppointmentsData.length
         });
 
     } catch (error) {
