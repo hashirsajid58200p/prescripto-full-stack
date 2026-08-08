@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
@@ -16,6 +16,15 @@ const Appointment = () => {
     const [docSlots, setDocSlots] = useState([])
     const [slotIndex, setSlotIndex] = useState(0)
     const [slotTime, setSlotTime] = useState('')
+
+    const daysRef = useRef(null)
+    const timeRef = useRef(null)
+
+    const scroll = (ref, scrollOffset) => {
+        if (ref.current) {
+            ref.current.scrollBy({ left: scrollOffset, behavior: 'smooth' })
+        }
+    }
 
     const navigate = useNavigate()
 
@@ -171,20 +180,43 @@ const Appointment = () => {
 
             {/* Booking slots */}
             <div className='sm:ml-72 sm:pl-4 mt-8 font-medium text-[#565656]'>
-                <p >Booking slots</p>
-                <div onWheel={(e) => e.currentTarget.scrollLeft += e.deltaY} className='flex gap-3 items-center w-full overflow-x-scroll mt-4 scroll-smooth'>
-                    {docSlots.length && docSlots.map((item, index) => (
-                        <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>
-                            <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
-                            <p>{item[0] && item[0].datetime.getDate()}</p>
-                        </div>
-                    ))}
+                <p>Booking slots</p>
+
+                {/* Day Slots with Arrows */}
+                <div className='flex items-center gap-2 mt-4'>
+                    <button onClick={() => scroll(daysRef, -200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Left">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+
+                    <div ref={daysRef} className='flex gap-3 items-center w-full overflow-x-scroll scrollbar-none scroll-smooth py-1'>
+                        {docSlots.length && docSlots.map((item, index) => (
+                            <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer flex-shrink-0 ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>
+                                <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
+                                <p>{item[0] && item[0].datetime.getDate()}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <button onClick={() => scroll(daysRef, 200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Right">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
                 </div>
 
-                <div onWheel={(e) => e.currentTarget.scrollLeft += e.deltaY} className='flex items-center gap-3 w-full overflow-x-scroll mt-4 scroll-smooth'>
-                    {docSlots.length && docSlots[slotIndex].map((item, index) => (
-                        <p onClick={() => setSlotTime(item.time)} key={index} className={`text-sm font-light  flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-[#949494] border border-[#B4B4B4]'}`}>{item.time.toUpperCase()}</p>
-                    ))}
+                {/* Time Slots with Arrows */}
+                <div className='flex items-center gap-2 mt-4'>
+                    <button onClick={() => scroll(timeRef, -200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Left">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+
+                    <div ref={timeRef} className='flex items-center gap-3 w-full overflow-x-scroll scrollbar-none scroll-smooth py-1'>
+                        {docSlots.length && docSlots[slotIndex].map((item, index) => (
+                            <p onClick={() => setSlotTime(item.time)} key={index} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-[#949494] border border-[#B4B4B4]'}`}>{item.time.toUpperCase()}</p>
+                        ))}
+                    </div>
+
+                    <button onClick={() => scroll(timeRef, 200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Right">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
                 </div>
 
                 <button onClick={bookAppointment} className='bg-primary text-white text-sm font-light px-20 py-3 rounded-full my-6'>Book an appointment</button>
