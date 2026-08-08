@@ -1,39 +1,60 @@
 {
-  "services": {
-    "frontend": {
-      "root": "frontend",
-      "framework": "vite"
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
     },
-    "admin": {
-      "root": "admin",
-      "framework": "vite"
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     },
-    "backend": {
-      "root": "backend",
-      "entrypoint": "server.js"
+    {
+      "src": "admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/api(/.*)?",
-      "destination": {
-        "type": "service",
-        "service": "backend"
-      }
+      "src": "/api/(.*)",
+      "dest": "backend/server.js"
     },
     {
-      "source": "/admin(/.*)?",
-      "destination": {
-        "type": "service",
-        "service": "admin"
-      }
+      "src": "/admin/assets/(.*)",
+      "dest": "admin/assets/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": {
-        "type": "service",
-        "service": "frontend"
-      }
+      "src": "/admin/(.*)",
+      "dest": "admin/index.html"
+    },
+    {
+      "src": "/admin",
+      "dest": "admin/index.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "frontend/assets/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "frontend/favicon.ico"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "frontend/favicon.svg"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/index.html"
     }
   ]
 }
