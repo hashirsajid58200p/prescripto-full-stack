@@ -52,7 +52,10 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            : <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Create account / Login</button>
+            : <div className='hidden md:flex items-center gap-3'>
+                <button onClick={() => navigate('/login')} className='border border-primary text-primary px-6 py-2.5 rounded-full font-light hover:bg-primary hover:text-white transition-all'>Login</button>
+                <button onClick={() => navigate('/signup')} className='bg-primary text-white px-6 py-2.5 rounded-full font-light hover:bg-opacity-90 transition-all'>Create account</button>
+              </div>
         }
         <img onClick={() => setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
 
@@ -67,6 +70,12 @@ const Navbar = () => {
             <NavLink onClick={() => setShowMenu(false)} to='/doctors' ><p className='px-4 py-2 rounded full inline-block'>ALL DOCTORS</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/about' ><p className='px-4 py-2 rounded full inline-block'>ABOUT</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/contact' ><p className='px-4 py-2 rounded full inline-block'>CONTACT</p></NavLink>
+            {!token && (
+              <>
+                <NavLink onClick={() => setShowMenu(false)} to='/login' ><p className='px-4 py-2 rounded full inline-block text-primary'>LOGIN</p></NavLink>
+                <NavLink onClick={() => setShowMenu(false)} to='/signup' ><p className='px-4 py-2 rounded full inline-block text-primary'>CREATE ACCOUNT</p></NavLink>
+              </>
+            )}
           </ul>
         </div>
       </div>
