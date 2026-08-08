@@ -182,24 +182,14 @@ const Appointment = () => {
             <div className='sm:ml-72 sm:pl-4 mt-8 font-medium text-[#565656]'>
                 <p>Booking slots</p>
 
-                {/* Day Slots with Arrows */}
-                <div className='flex items-center gap-2 mt-4'>
-                    <button onClick={() => scroll(daysRef, -200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Left">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                    </button>
-
-                    <div ref={daysRef} className='flex gap-3 items-center w-full overflow-x-scroll scrollbar-none scroll-smooth py-1'>
-                        {docSlots.length && docSlots.map((item, index) => (
-                            <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer flex-shrink-0 ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>
-                                <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
-                                <p>{item[0] && item[0].datetime.getDate()}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <button onClick={() => scroll(daysRef, 200)} className='p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white flex-shrink-0 transition-all shadow-sm' title="Scroll Right">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                    </button>
+                {/* Day Slots */}
+                <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
+                    {docSlots.length && docSlots.map((item, index) => (
+                        <div onClick={() => setSlotIndex(index)} key={index} className={`text-center py-6 min-w-16 rounded-full cursor-pointer flex-shrink-0 ${slotIndex === index ? 'bg-primary text-white' : 'border border-[#DDDDDD]'}`}>
+                            <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
+                            <p>{item[0] && item[0].datetime.getDate()}</p>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Time Slots with Arrows */}
