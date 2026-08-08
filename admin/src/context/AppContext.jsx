@@ -6,7 +6,12 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currency = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || ""
+    const rawUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = rawUrl && rawUrl !== 'http://localhost:4000' && rawUrl !== 'http://localhost:4000/'
+        ? rawUrl
+        : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:4000'
+            : '')
 
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 

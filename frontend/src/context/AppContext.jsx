@@ -7,7 +7,12 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || ""
+    const rawUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = rawUrl && rawUrl !== 'http://localhost:4000' && rawUrl !== 'http://localhost:4000/'
+        ? rawUrl
+        : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:4000'
+            : '')
 
     const [doctors, setDoctors] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
