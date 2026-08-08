@@ -10,12 +10,22 @@ import adminRouter from "./routes/adminRoute.js"
 // app config
 const app = express()
 const port = process.env.PORT || 4000
-connectDB()
-connectCloudinary()
+
+connectDB().catch(err => console.error("MongoDB init error:", err))
+connectCloudinary().catch(err => console.error("Cloudinary init error:", err))
 
 // middlewares
 app.use(express.json())
 app.use(cors())
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB()
+    } catch (e) {
+        console.error("Middleware DB error:", e)
+    }
+    next()
+})
 
 // api endpoints
 app.use("/api/user", userRouter)
