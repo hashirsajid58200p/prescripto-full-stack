@@ -7,8 +7,11 @@
     "install:all": "npm install --prefix backend && npm install --prefix frontend && npm install --prefix admin",
     "dev:backend": "npm run server --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
-    "dev:admin": "npm run dev --prefix admin",
-    "dev": "concurrently --kill-others-on-fail -n \"BACKEND,FRONTEND,ADMIN\" -c \"cyan,green,yellow\" \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:admin\""
+    "dev": "concurrently --kill-others-on-fail -n \"BACKEND,FRONTEND,ADMIN\" -c \"cyan,green,yellow\" \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:admin\"",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:build": "docker compose build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
